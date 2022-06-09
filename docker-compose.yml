@@ -1,0 +1,19 @@
+version: '3'
+services:
+  react-container:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        DEV_ENV: 1
+    command: >
+      sh -c "yarn install && yarn start"
+    networks:
+      - public
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/react-container:cached
+networks:
+  public:
+    driver: bridge
